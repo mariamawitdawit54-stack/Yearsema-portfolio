@@ -270,6 +270,7 @@ h1,h2,h3,p{
 
   .nav{
     position:fixed;
+    z-index:100;
     top:58px;
     right:0;
     bottom:0;
