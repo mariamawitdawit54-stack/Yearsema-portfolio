@@ -270,7 +270,7 @@ h1,h2,h3,p{
 
   .nav{
     position:fixed;
-    inset:64px 0 0 0;
+    inset:58px 0 0 0;
     background:var(--paper-hi);
     flex-direction:column;
     align-items:flex-start;
@@ -288,13 +288,19 @@ h1,h2,h3,p{
     transform:translateY(0);
     pointer-events:auto;
   }
+.nav a{
+  width:100%;
+  padding:1rem 0;
+  font-size:1.3rem;
+  border-bottom:1px solid var(--line);
+  color:var(--ink);
+}
 
-  .nav a{
-    width:100%;
-    padding:1rem 0;
-    font-size:1.3rem;
-    border-bottom:1px solid var(--line);
-  }
+.nav a:hover,
+.nav a[aria-current="page"]{
+  color:var(--marigold);
+  border-color:var(--marigold);
+}
 
   .nav .btn{
     margin-top:1rem;
