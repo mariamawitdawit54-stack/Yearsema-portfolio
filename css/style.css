@@ -41,6 +41,7 @@
 
 html{
   scroll-behavior:smooth;
+  overflow-x:hidden;
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -263,6 +264,10 @@ h1,h2,h3,p{
   border-color:var(--cobalt);
 }
 
+/* ---------------------------------------------------------
+   MOBILE NAV — slide-out sidebar drawer (right side)
+   Only this block + the 620px tweaks below were changed.
+   --------------------------------------------------------- */
 @media (max-width: 860px){
   .nav-toggle{
     display:block;
@@ -270,28 +275,34 @@ h1,h2,h3,p{
 
   .nav{
     position:fixed;
-    z-index:40;
+    z-index:45;                         /* stays below .masthead (z-index:50) so the
+                                            header bar + toggle button always stay visible
+                                            and tappable above the open drawer */
     top:0;
-    right:0;
-    bottom:0;
-    left:0;
+    right:-100%;                        /* fully off-screen when closed */
+    left:auto;
+    bottom:auto;
+    width:min(86vw, 320px);
+    max-width:320px;
+    height:100vh;
+    height:100dvh;                      /* better fit on mobile browsers with dynamic chrome */
     background:var(--paper-hi);
     flex-direction:column;
     align-items:flex-start;
-    padding:calc(64px + 1.5rem) var(--gutter) 2rem;
-    gap:.5rem;
-    transform:translateY(-8px);
-    opacity:0;
-    pointer-events:none;
-    transition:opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+    padding:calc(64px + 1.5rem) 1.75rem 2rem;
+    gap:.15rem;
     overflow-y:auto;
     -webkit-overflow-scrolling:touch;
+    /* dim backdrop over the rest of the page, done as a transitionable
+       box-shadow spread so it always paints behind the drawer's own
+       content and never needs a separate overlay element */
+    box-shadow:0 0 0 100vmax rgba(71,43,58,0);
+    transition:right var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
   }
 
   .nav.open{
-    opacity:1;
-    transform:translateY(0);
-    pointer-events:auto;
+    right:0;
+    box-shadow:0 0 0 100vmax rgba(71,43,58,.55);
   }
 
   .nav a{
@@ -304,15 +315,23 @@ h1,h2,h3,p{
 
   .nav a:hover,
   .nav a[aria-current="page"]{
-    color:var(--marigold);
+    color:var(--cobalt);
     border-color:var(--marigold);
   }
 
   .nav .btn{
-    margin-top:1rem;
+    margin-top:1.25rem;
     width:100%;
     justify-content:center;
-    color:var(--paper);
+    background:var(--cobalt);
+    color:var(--paper-hi);
+    border-color:var(--cobalt);
+  }
+
+  .nav .btn:hover{
+    background:var(--cobalt-ink);
+    border-color:var(--cobalt-ink);
+    color:var(--paper-hi);
   }
 }
 
