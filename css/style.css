@@ -277,8 +277,8 @@ h1,h2,h3,p{
     background:var(--paper-hi);
     flex-direction:column;
     align-items:flex-start;
-    padding:1.5rem var(--gutter) 2rem;
-    gap:0;
+    padding:2rem var(--gutter) 2rem;
+    gap:.5rem;
     transform:translateY(-8px);
     opacity:0;
     pointer-events:none;
